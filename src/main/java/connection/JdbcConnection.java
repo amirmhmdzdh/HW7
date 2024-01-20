@@ -6,13 +6,18 @@ import java.sql.SQLException;
 
 public class JdbcConnection {
 
-    private final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres","Amir");
+    private static final Connection CONNECTION ;
 
-    public JdbcConnection() throws SQLException {
-    }
+ static {
+     try {
+        CONNECTION = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres" , "postgres","Amir");
+     } catch (SQLException e) {
+         throw new RuntimeException(e);
+     }
+ }
 
-    public Connection getConnection(){
-      return connection;
+    public static Connection getConnection(){
+      return CONNECTION;
 
     }
 }

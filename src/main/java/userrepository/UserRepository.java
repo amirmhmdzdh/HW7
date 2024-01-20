@@ -1,22 +1,19 @@
 package userrepository;
-
-import connection.JdbcConnection;
 import model.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRepository {
 
-    private final JdbcConnection jdbcConnection = new JdbcConnection();
+    private final Connection connection ;
 
-    public UserRepository() throws SQLException {
+    public UserRepository(Connection connection){
+    this.connection = connection;
     }
 
     public int registerUser(User user) throws SQLException {
-
-        Connection connection = jdbcConnection.getConnection();
 
         String adduser = "INSERT INTO users(name , user_name , email , password)VALUES(?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(adduser);
@@ -30,4 +27,22 @@ public class UserRepository {
         return result;
     }
 
+    public User findUser(String username) throws SQLException {
+
+        String findUser = "SELECT * FROM users WHERE user_name = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(findUser);
+        preparedStatement.setString(1, username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String userName = resultSet.getString("user_name");
+            String email = resultSet.getString("email");
+            String password = resultSet.getString("password");
+            return new User(id, name, userName, email, password);
+        } else
+            return null;
+
+    }
 }

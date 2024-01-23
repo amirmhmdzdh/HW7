@@ -1,10 +1,6 @@
 import menu.Menu;
-
 import java.sql.SQLException;
-
-import static menu.Menu.brandMenu;
-import static menu.Menu.categoryMenu;
-
+import static menu.Menu.*;
 public class Main {
     public static void main(String[] args) throws SQLException {
 
@@ -12,6 +8,7 @@ public class Main {
         menu.publicMenu();
         brandMenu();
         categoryMenu();
+        productMenu();
     }
 
 }

@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS product
 CREATE TABLE IF NOT EXISTS category
 (
     id          SERIAL PRIMARY KEY,
-    name        VARCHAR,
+    name        VARCHAR UNIQUE ,
     description VARCHAR
 
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS category
 CREATE TABLE IF NOT EXISTS brand
 (
     id          SERIAL PRIMARY KEY,
-    name        VARCHAR,
+    name        VARCHAR UNIQUE ,
     website     VARCHAR,
     description VARCHAR
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS shareholder
     id            SERIAL PRIMARY KEY,
     name          VARCHAR,
     phone_number  VARCHAR,
-    national_code VARCHAR
+    national_code VARCHAR UNIQUE
 
 
 );

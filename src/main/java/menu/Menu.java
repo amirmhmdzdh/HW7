@@ -1,6 +1,8 @@
 package menu;
 
 import service.BrandService;
+import service.CategoryService;
+import service.ProductService;
 import service.UserService;
 import utility.ApplicationContex;
 
@@ -12,6 +14,8 @@ public class Menu {
     private static final Scanner scanner = new Scanner(System.in);
     private static final UserService userService = ApplicationContex.getUserService();
     private static final BrandService brandService = ApplicationContex.getBrandService();
+    private static final CategoryService categoryService = ApplicationContex.getCategoryService();
+    private static final ProductService productService = ApplicationContex.getProductService();
 
     public Menu() {
     }
@@ -20,7 +24,9 @@ public class Menu {
         System.out.println("*** welcom ***\nMENU");
         System.out.println("1-SIGN UP");
         System.out.println("2-Brand Menu");
-        System.out.println("3-EXIT");
+        System.out.println("3-Category Menu");
+        System.out.println("4-Product creation");
+        System.out.println("5-EXIT");
         System.out.println("Choose your number");
 
         int number = scanner.nextInt();
@@ -29,7 +35,9 @@ public class Menu {
         switch (number) {
             case 1 -> signUp();
             case 2 -> brandMenu();
-            case 3 -> System.out.println("EXIT\nGOODLUCK");
+            case 3 -> categoryMenu();
+            case 4 -> productMenu();
+            case 5 -> System.out.println("EXIT\nGOODLUCK");
             default -> System.out.println("Invalid option!");
         }
     }
@@ -40,9 +48,8 @@ public class Menu {
         while (!back) {
             System.out.println("Brand menu\n Please log in to your user account and then create a brand :)");
             System.out.println("1-login and Create a new brand");
-            System.out.println("2-Add brand");
-            System.out.println("3-Brand editing");
-            System.out.println("4-ِDelete brand");
+            System.out.println("2-Brand editing");
+            System.out.println("3-ِDelete brand");
             System.out.println("0-Back to the previous menu");
 
             System.out.print(" please enter your number: ");
@@ -52,9 +59,8 @@ public class Menu {
             switch (choice) {
                 case 0 -> back = true;
                 case 1 -> signIn();
-                case 2 -> addbrand();
-                case 3 -> editbrand();
-                case 4 -> deletebrand();
+                case 2 -> editbrand();
+                case 3 -> deletebrand();
 
 
                 default -> System.out.println("Invalid option!");
@@ -69,9 +75,8 @@ public class Menu {
         while (!back) {
             System.out.println("Category menu\n Please log in to your user account and then create a Category :)");
             System.out.println("1-login and Create a new Category");
-            System.out.println("2-Add Category");
-            System.out.println("3-Category editing");
-            System.out.println("4-ِDelete Category");
+            System.out.println("2-Category editing");
+            System.out.println("3-ِDelete Category");
             System.out.println("0-Back to  previous menu");
 
             System.out.print(" please enter your number: ");
@@ -81,9 +86,34 @@ public class Menu {
             switch (choice) {
                 case 0 -> back = true;
                 case 1 -> signIn();
-                case 2 -> addbrand();
-                case 3 -> editbrand();
-                case 4 -> deletebrand();
+                case 2 -> editcategory();
+                case 3 -> deletecategory();
+
+
+                default -> System.out.println("Invalid option!");
+            }
+        }
+    }
+
+    public static void productMenu() throws SQLException {
+        boolean back = false;
+
+        while (!back) {
+            System.out.println("Product menu :)");
+            System.out.println("1-Show brands and categories");
+            System.out.println("2-create product");
+            System.out.println("3-product editing");
+            System.out.println("4-ِDelete product");
+            System.out.println("0-Back to  previous menu");
+
+            System.out.print(" please enter your number: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 0 -> back = true;
+                case 1 -> showall();
+                case 2 -> deletecategory();
 
 
                 default -> System.out.println("Invalid option!");
@@ -92,36 +122,42 @@ public class Menu {
     }
 
 
-
-
-
-
     public void signUp() throws SQLException {
         userService.signup();
     }
 
     public static void signIn() throws SQLException {
         userService.signIn();
-        brandService.CreateBrand();
+        categoryService.CreateCategory();
     }
+
     public static void signin() throws SQLException {
         userService.signIn();
         brandService.CreateBrand();
-    }
-
-
-    public static void addbrand() throws SQLException {
-        brandService.addBrand();
-
     }
 
     public static void editbrand() throws SQLException {
         brandService.editBrand();
 
     }
-  public static void deletebrand() throws SQLException {
-        brandService.deleteBrand();
-  }
 
+    public static void editcategory() throws SQLException {
+        categoryService.editeCategory();
+
+    }
+
+    public static void deletebrand() throws SQLException {
+        brandService.deleteBrand();
+    }
+
+    public static void deletecategory() throws SQLException {
+        categoryService.deleteCategory();
+    }
+
+    public static void showall() throws SQLException {
+        productService.findallbrand();
+        productService.findallcategory();
+        productService.createProduct();
+    }
 
 }

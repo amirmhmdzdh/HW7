@@ -16,7 +16,7 @@ public class BrandRepository {
         this.connection = connection;
     }
 
-    public int registerBrand(Brand brand) throws SQLException {
+    public int CreateBrand(Brand brand) throws SQLException {
 
         String createBrand = "INSERT INTO brand(name , website , description)VALUES(?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(createBrand);
@@ -29,22 +29,6 @@ public class BrandRepository {
         return result;
 
     }
-
-    public int addBrand(Brand brand) throws SQLException {
-
-        String addbrand = "INSERT INTO brand(name , website , description)VALUES(?,?,?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(addbrand);
-
-        preparedStatement.setString(1, brand.getBrandName());
-        preparedStatement.setString(2, brand.getWebsite());
-        preparedStatement.setString(3, brand.getDescription());
-
-        int result = preparedStatement.executeUpdate();
-        return result;
-
-
-    }
-
     public Brand editBrand(Brand brand) throws SQLException {
 
         String editBrand = "UPDATE brand SET name = ? , website = ? , description = ?  WHERE id = ?;";
@@ -57,10 +41,7 @@ public class BrandRepository {
 
         preparedStatement.executeUpdate();
         return brand;
-
-
     }
-
     public Brand load(int id) throws SQLException {
 
         String select = "SELECT * FROM brand WHERE id=? ";

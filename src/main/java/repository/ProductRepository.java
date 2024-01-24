@@ -83,4 +83,53 @@ public class ProductRepository {
         int result = preparedStatement.executeUpdate();
         return result;
     }
+
+    public Product editeProduct(Product product) throws SQLException {
+
+        String editProduct = "UPDATE product set name =? , create_date = ? , category_id = ? , brand_id = ? WHERE id = ? ;";
+        PreparedStatement preparedStatement = connection.prepareStatement(editProduct);
+
+        preparedStatement.setString(1, product.getName());
+        preparedStatement.setInt(2, product.getCreateDate());
+        preparedStatement.setInt(3, product.getCategory());
+        preparedStatement.setInt(4, product.getBrand());
+        preparedStatement.setInt(5, product.getId());
+
+        preparedStatement.executeUpdate();
+        return product;
+
+    }
+
+    public Product load(int id) throws SQLException {
+
+        String select = "SELECT * FROM product WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(select);
+
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+
+            int productId = resultSet.getInt("id");
+            String productName = resultSet.getString("name");
+            int date = resultSet.getInt("create_date");
+            int categoryid = resultSet.getInt("category_id");
+            int brandid = resultSet.getInt("brand_id");
+
+            Product product = new Product(productId, productName, date, categoryid, brandid);
+
+            return product;
+
+        } else return null;
+
+    }
+
+    public  Product deleteProduct(Product product) throws SQLException {
+        String deleteQuery = "DELETE FROM product WHERE id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+        preparedStatement.setInt(1, product.getId());
+        preparedStatement.executeUpdate();
+        return product;
+    }
+
+
 }

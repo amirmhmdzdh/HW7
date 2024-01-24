@@ -1,13 +1,13 @@
 package utility;
 
-public class InputValidation {
+public class Validation {
     public static boolean isValidPassword(String password) {
         String pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#!%&*])[A-Za-z0-9@#!%&*]{8,10}$";
         return password.matches(pattern);
     }
 
     public static boolean isValidEmail(String email) {
-        String pattern = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+        String pattern = "^(.+)@(\\S+)$";
         return email.matches(pattern);
     }
 
@@ -24,7 +24,12 @@ public class InputValidation {
 
     }
 
+    public static boolean isValidnatioalCode(String nationalCode) {
+
+        String pattern = "[0-9]{10}";
+        return nationalCode.matches(pattern);
+
+    }
+
 
 }
-
-

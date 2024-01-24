@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS shareholder
 );
 CREATE TABLE IF NOT EXISTS shareholder_brand
 (
+    id INTEGER,
     brand_id       INTEGER,
     shareholder_id INTEGER,
-
     FOREIGN KEY (brand_id) REFERENCES shareholder (id),
     FOREIGN KEY (shareholder_id) REFERENCES brand (id)
 

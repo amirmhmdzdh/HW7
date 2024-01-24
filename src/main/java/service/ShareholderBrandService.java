@@ -1,8 +1,6 @@
 package service;
 
-import model.Shareholder;
 import model.ShareholderBrand;
-import repository.ProductRepository;
 import repository.ShareholderBrandRepo;
 
 import java.sql.SQLException;
@@ -33,6 +31,45 @@ public class ShareholderBrandService {
             System.out.println("you successfully added :)");
         else
             System.out.println("something is wrong :/");
+    }
+
+    public void editeShareholderBrand() throws SQLException {
+
+        System.out.println("please enter your ShareholderBrand Id: ");
+        int id = scanner.nextInt();
+
+        ShareholderBrand shareholderBrand = load(id);
+
+        System.out.println("please enter brandId: ");
+        int BId = scanner.nextInt();
+
+        shareholderBrand.setBrand(BId);
+
+        System.out.println("please enter ShareholderId: ");
+        int CId = scanner.nextInt();
+
+        shareholderBrand.setShareholder(CId);
+
+        shareholderBrandRepo.editeShareholderBrand(shareholderBrand);
+        System.out.println(shareholderBrand);
+
+    }
+
+    private ShareholderBrand load(int id) throws SQLException {
+
+        ShareholderBrand shareholderBrand = shareholderBrandRepo.load(id);
+        return shareholderBrand;
+    }
+
+    public void deleteShareholderBrand() throws SQLException {
+
+        System.out.println("enter shareholderId that you want delete :");
+        int id = scanner.nextInt();
+
+        ShareholderBrand shareholderBrand = load(id);
+        shareholderBrandRepo.deleteShareholderBrand(shareholderBrand);
+
+
     }
 
 

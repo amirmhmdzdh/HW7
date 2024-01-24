@@ -63,8 +63,56 @@ public class ProductService {
 
     }
 
+    public void editeProduct() throws SQLException {
 
+        System.out.println("please enter your Product Id: ");
+        int id = scanner.nextInt();
+
+        Product product = load(id);
+
+        System.out.println("please enter your Product name:");
+        String productName = scanner.next();
+
+        product.setName(productName);
+
+        System.out.println("Please enter your productDate: ");
+        int createDate = scanner.nextInt();
+
+        product.setCreateDate(createDate);
+
+        System.out.println("please enter categoryId: ");
+        int CId = scanner.nextInt();
+
+        product.setCategory(CId);
+
+        System.out.println("please enter brandId: ");
+        int BId = scanner.nextInt();
+
+        product.setBrand(BId);
+
+        productRepository.editeProduct(product);
+        System.out.println(product);
+
+
+    }
+
+
+    private Product load(int id) throws SQLException {
+
+        Product product = productRepository.load(id);
+        return product;
+    }
+
+    public void deleteProduct () throws SQLException {
+
+        System.out.println("enter productId that you want delete :");
+        int id = scanner.nextInt();
+
+        Product product = load(id);
+        productRepository.deleteProduct(product);
+
+
+    }
 }
-
 
 

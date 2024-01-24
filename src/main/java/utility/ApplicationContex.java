@@ -1,14 +1,8 @@
 package utility;
 
 import connection.JdbcConnection;
-import repository.BrandRepository;
-import repository.CategoryRepository;
-import repository.ProductRepository;
-import service.BrandService;
-import service.CategoryService;
-import service.ProductService;
-import service.UserService;
-import repository.UserRepository;
+import repository.*;
+import service.*;
 
 import java.sql.Connection;
 
@@ -23,6 +17,11 @@ public class ApplicationContex {
     private static final CategoryService CATEGORY_SERVICE;
     private static final ProductRepository PRODUCT_REPOSITORY;
     private static final ProductService PRODUCT_SERVICE;
+    private static final ShareholderRepository SHAREHOLDER_REPOSITORY;
+    private static final ShareholderService SHAREHOLDER_SERVICE;
+    private static final ShareholderBrandRepo SHAREHOLDER_BRAND_REPO;
+    private static final ShareholderBrandService SHAREHOLDER_BRAND_SERVICE;
+
 
     static {
 
@@ -38,6 +37,12 @@ public class ApplicationContex {
 
         PRODUCT_REPOSITORY = new ProductRepository(CONNECTION);
         PRODUCT_SERVICE = new ProductService(PRODUCT_REPOSITORY);
+
+        SHAREHOLDER_REPOSITORY = new ShareholderRepository(CONNECTION);
+        SHAREHOLDER_SERVICE = new ShareholderService(SHAREHOLDER_REPOSITORY);
+
+        SHAREHOLDER_BRAND_REPO = new ShareholderBrandRepo(CONNECTION);
+        SHAREHOLDER_BRAND_SERVICE = new ShareholderBrandService(SHAREHOLDER_BRAND_REPO);
 
 
     }
@@ -57,4 +62,14 @@ public class ApplicationContex {
     public static ProductService getProductService() {
         return PRODUCT_SERVICE;
     }
+
+   public static ShareholderService getShareholderService(){
+        return SHAREHOLDER_SERVICE;
+   }
+
+public static ShareholderBrandService getShareholderBrandService(){
+        return SHAREHOLDER_BRAND_SERVICE;
 }
+
+}
+

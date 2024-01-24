@@ -9,6 +9,7 @@ public class Main {
         brandMenu();
         categoryMenu();
         productMenu();
+        shareholderMenu();
     }
 
 }

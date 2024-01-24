@@ -61,7 +61,7 @@ public class CategoryService {
 
     public void deleteCategory() throws SQLException {
 
-        System.out.println("enter brandId that you want delete :");
+        System.out.println("enter CategiryId that you want delete :");
         int id = scanner.nextInt();
 
         Category category = load(id);

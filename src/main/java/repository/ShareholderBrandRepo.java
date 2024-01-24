@@ -66,7 +66,7 @@ public class ShareholderBrandRepo {
 
     }
 
-    public ShareholderBrand deleteShareholder(ShareholderBrand shareholderBrand) throws SQLException {
+    public ShareholderBrand deleteShareholderBrand(ShareholderBrand shareholderBrand) throws SQLException {
         String deleteQuery = "DELETE FROM shareholder_brand WHERE id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
         preparedStatement.setInt(1, shareholderBrand.getId());

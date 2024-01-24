@@ -1,9 +1,6 @@
 package menu;
 
-import service.BrandService;
-import service.CategoryService;
-import service.ProductService;
-import service.UserService;
+import service.*;
 import utility.ApplicationContex;
 
 import java.sql.SQLException;
@@ -16,29 +13,39 @@ public class Menu {
     private static final BrandService brandService = ApplicationContex.getBrandService();
     private static final CategoryService categoryService = ApplicationContex.getCategoryService();
     private static final ProductService productService = ApplicationContex.getProductService();
+    private static final ShareholderService shareholderService = ApplicationContex.getShareholderService();
+    private static final ShareholderBrandService shareholderBrandService = ApplicationContex.getShareholderBrandService();
 
     public Menu() {
     }
 
+
+
     public void publicMenu() throws SQLException {
+            boolean back = false;
+        while (!back) {
         System.out.println("*** welcom ***\nMENU");
-        System.out.println("1-SIGN UP");
-        System.out.println("2-Brand Menu");
-        System.out.println("3-Category Menu");
-        System.out.println("4-Product creation");
-        System.out.println("5-EXIT");
-        System.out.println("Choose your number");
+            System.out.println("1-SIGN UP");
+            System.out.println("2-Brand Menu");
+            System.out.println("3-Category Menu");
+            System.out.println("4-Product creation");
+            System.out.println("5-Shareholder Menu");
+            System.out.println("6-EXIT");
+            System.out.println("Choose your number");
 
-        int number = scanner.nextInt();
-        scanner.nextLine();
+            int number = scanner.nextInt();
+            scanner.nextLine();
 
-        switch (number) {
-            case 1 -> signUp();
-            case 2 -> brandMenu();
-            case 3 -> categoryMenu();
-            case 4 -> productMenu();
-            case 5 -> System.out.println("EXIT\nGOODLUCK");
-            default -> System.out.println("Invalid option!");
+            switch (number) {
+                case 0 -> back = true;
+                case 1 -> signUp();
+                case 2 -> brandMenu();
+                case 3 -> categoryMenu();
+                case 4 -> productMenu();
+                case 5 -> shareholderMenu();
+                case 6 -> System.out.println("EXIT\nGOODLUCK");
+                default -> System.out.println("Invalid option!");
+            }
         }
     }
 
@@ -58,7 +65,7 @@ public class Menu {
 
             switch (choice) {
                 case 0 -> back = true;
-                case 1 -> signIn();
+                case 1 -> signin();
                 case 2 -> editbrand();
                 case 3 -> deletebrand();
 
@@ -100,10 +107,9 @@ public class Menu {
 
         while (!back) {
             System.out.println("Product menu :)");
-            System.out.println("1-Show brands and categories");
-            System.out.println("2-create product");
-            System.out.println("3-product editing");
-            System.out.println("4-ِDelete product");
+            System.out.println("1-Show brands and categories\nCreate product");
+            System.out.println("2-product editing");
+            System.out.println("3-ِDelete product");
             System.out.println("0-Back to  previous menu");
 
             System.out.print(" please enter your number: ");
@@ -113,7 +119,8 @@ public class Menu {
             switch (choice) {
                 case 0 -> back = true;
                 case 1 -> showall();
-                case 2 -> deletecategory();
+                case 2 -> editeProduct();
+                case 3 -> deleteProduct();
 
 
                 default -> System.out.println("Invalid option!");
@@ -121,6 +128,36 @@ public class Menu {
         }
     }
 
+    public static void shareholderMenu() throws SQLException {
+        boolean back = false;
+
+        while (!back) {
+            System.out.println("Shareholder menu :)");
+            System.out.println("1-Sign Up");
+            System.out.println("2-Sign IN");
+            System.out.println("3-ِedite Shareholder");
+            System.out.println("4-delete Shareholder");
+            System.out.println("5-edite Shareholder Brand");
+            System.out.println("6-delete Shareholder Brand");
+            System.out.println("0-Back to  previous menu");
+
+            System.out.print(" please enter your number: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 0 -> back = true;
+                case 1 -> signUP();
+                case 2 -> signIN();
+                case 3 -> editeShareholder();
+                case 4 -> deleteShareholder();
+                case 5 -> editeShareholderBrand();
+                case 6 -> deleteShareholderBrand();
+
+                default -> System.out.println("Invalid option!");
+            }
+        }
+    }
 
     public void signUp() throws SQLException {
         userService.signup();
@@ -160,4 +197,46 @@ public class Menu {
         productService.createProduct();
     }
 
+    public static void editeProduct() throws SQLException {
+        productService.editeProduct();
+    }
+
+    public static void deleteProduct() throws SQLException {
+        productService.deleteProduct();
+    }
+
+    public static void signUP() throws SQLException {
+        shareholderService.signUp();
+    }
+
+    public static void signIN() throws SQLException {
+        shareholderService.signIn();
+        shareholderBrandService.create();
+
+    }
+
+    public static void editeShareholder() throws SQLException {
+        shareholderService.editeShareholder();
+
+    }
+
+    public static void deleteShareholder() throws SQLException {
+
+        shareholderService.deleteShareholder();
+    }
+
+
+    public static void editeShareholderBrand() throws SQLException {
+
+        shareholderBrandService.editeShareholderBrand();
+    }
+
+    public static void deleteShareholderBrand() throws SQLException {
+
+        shareholderBrandService.editeShareholderBrand();
+    }
+
 }
+
+
+

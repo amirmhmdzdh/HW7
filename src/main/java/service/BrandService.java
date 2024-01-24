@@ -2,7 +2,7 @@ package service;
 
 import model.Brand;
 import repository.BrandRepository;
-import utility.InputValidation;
+import utility.Validation;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -27,7 +27,7 @@ public class BrandService {
             System.out.println("Please enter your brand website address: ");
             website = scanner.next();
 
-            if (InputValidation.isValidWebsite(website))
+            if (Validation.isValidWebsite(website))
                 break;
             else
                 System.out.println("please enter correct website");

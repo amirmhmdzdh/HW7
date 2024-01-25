@@ -2,6 +2,7 @@ package service;
 
 import model.ShareholderBrand;
 import repository.ShareholderBrandRepo;
+import utility.ApplicationContex;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -72,5 +73,13 @@ public class ShareholderBrandService {
 
     }
 
+    public void deleteBrandId(int brandid) throws SQLException {
 
+        shareholderBrandRepo.deleteBrandId(brandid);
+    }
+
+    public void deleteShareholderId(int shareholder) throws SQLException {
+
+        shareholderBrandRepo.deleteShareholderId(shareholder);
+    }
 }

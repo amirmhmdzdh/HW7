@@ -2,7 +2,7 @@ package service;
 
 import model.User;
 import repository.UserRepository;
-import utility.InputValidation;
+import utility.Validation;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -26,7 +26,7 @@ public class UserService {
 
             System.out.println("please enter your username:");
             userName = scanner.next();
-            if (InputValidation.isValidUsername(userName))
+            if (Validation.isValidUsername(userName))
                 break;
             else
                 System.out.println("please enter correct username");
@@ -38,7 +38,7 @@ public class UserService {
             System.out.println("please enter your Email:");
             email = scanner.next();
 
-            if (InputValidation.isValidEmail(email))
+            if (Validation.isValidEmail(email))
                 break;
             else
                 System.out.println("please enter a correct Email");
@@ -49,7 +49,7 @@ public class UserService {
 
             System.out.println("please enter your password:");
             password = scanner.next();
-            if (InputValidation.isValidPassword(password))
+            if (Validation.isValidPassword(password))
                 break;
             else
                 System.out.println("please enter correct password");

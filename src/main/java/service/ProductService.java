@@ -93,9 +93,7 @@ public class ProductService {
         productRepository.editeProduct(product);
         System.out.println(product);
 
-
     }
-
 
     private Product load(int id) throws SQLException {
 
@@ -103,7 +101,20 @@ public class ProductService {
         return product;
     }
 
-    public void deleteProduct () throws SQLException {
+    public void deleteBrandId(int brandid) throws SQLException {
+
+        productRepository.deleteBrandId(brandid);
+    }
+
+    public void deleteCategoryId(int categoryid) throws SQLException {
+
+        Product product = load(categoryid);
+        productRepository.deleteCategoryId(categoryid);
+
+
+    }
+
+    public void deleteProduct() throws SQLException {
 
         System.out.println("enter productId that you want delete :");
         int id = scanner.nextInt();

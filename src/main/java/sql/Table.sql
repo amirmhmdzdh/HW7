@@ -51,6 +51,6 @@ CREATE TABLE IF NOT EXISTS shareholder_brand
     id             SERIAL PRIMARY KEY,
     brand_id       INTEGER,
     shareholder_id INTEGER,
-    FOREIGN KEY (brand_id) REFERENCES shareholder (id),
-    FOREIGN KEY (shareholder_id) REFERENCES brand (id)
+    FOREIGN KEY (brand_id) REFERENCES brand (id),
+    FOREIGN KEY (shareholder_id) REFERENCES shareholder (id)
 );

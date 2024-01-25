@@ -1,8 +1,8 @@
 package service;
 
-import model.Product;
 import model.Shareholder;
 import repository.ShareholderRepository;
+import utility.ApplicationContex;
 import utility.Validation;
 
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ public class ShareholderService {
 
     private final Scanner scanner = new Scanner(System.in);
     private final ShareholderRepository shareholderRepository;
-
+    private final ShareholderBrandService shareholderBrandService = ApplicationContex.getShareholderBrandService();
 
     public ShareholderService(ShareholderRepository shareholderRepository) {
         this.shareholderRepository = shareholderRepository;
@@ -73,7 +73,7 @@ public class ShareholderService {
         System.out.println("please enter your Shareholder Id: ");
         int id = scanner.nextInt();
 
-       Shareholder shareholder = load(id);
+        Shareholder shareholder = load(id);
 
         System.out.println("please enter your Shareholder name:");
         String Name = scanner.next();
@@ -94,23 +94,28 @@ public class ShareholderService {
         System.out.println(shareholder);
 
     }
+
     private Shareholder load(int id) throws SQLException {
 
         Shareholder shareholder = shareholderRepository.load(id);
         return shareholder;
     }
 
-    public void deleteShareholder () throws SQLException {
+    public void deleteShareholder() throws SQLException {
 
-        System.out.println("enter shareholderId that you want delete :");
+        System.out.println(" enter shareholderId that you want delete : ");
         int id = scanner.nextInt();
 
         Shareholder shareholder = load(id);
-        shareholderRepository.deleteShareholder(shareholder);
+        if (shareholder != null) {
+
+            shareholderBrandService.deleteShareholderId(id);
+            shareholderRepository.deleteShareholder(shareholder);
+            System.out.println("Brand deleted successfully");
+        } else {
+            System.out.println("Brand not found");
+        }
 
 
     }
-
-
-
 }

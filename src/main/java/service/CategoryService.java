@@ -1,6 +1,9 @@
 package service;
+
 import model.Category;
 import repository.CategoryRepository;
+import utility.ApplicationContex;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -8,10 +11,12 @@ public class CategoryService {
 
     private final Scanner scanner = new Scanner(System.in);
     private final CategoryRepository categoryRepository;
+    private final ProductService productService = ApplicationContex.getProductService();
 
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
+
 
     public void CreateCategory() throws SQLException {
 
@@ -31,6 +36,7 @@ public class CategoryService {
             System.out.println("something is wrong :/");
 
     }
+
     public void editeCategory() throws SQLException {
 
         System.out.println("please enter your Category Id: ");
@@ -61,11 +67,14 @@ public class CategoryService {
 
     public void deleteCategory() throws SQLException {
 
+
         System.out.println("enter CategiryId that you want delete :");
         int id = scanner.nextInt();
-
+        productService.deleteCategoryId(id);
         Category category = load(id);
         categoryRepository.deleteCategory(category);
+
+
     }
 
 

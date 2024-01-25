@@ -123,12 +123,27 @@ public class ProductRepository {
 
     }
 
-    public  Product deleteProduct(Product product) throws SQLException {
+    public void deleteProduct(Product product) throws SQLException {
         String deleteQuery = "DELETE FROM product WHERE id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
         preparedStatement.setInt(1, product.getId());
         preparedStatement.executeUpdate();
-        return product;
+    }
+
+    public void deleteBrandId(int brandId) throws SQLException {
+
+        String DbrandId = "DELETE FROM product WHERE brand_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(DbrandId);
+        preparedStatement.setInt(1, brandId);
+        preparedStatement.executeUpdate();
+    }
+
+    public void deleteCategoryId(int categoryId) throws SQLException {
+
+        String DcategoryId = "DELETE FROM product WHERE category_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(DcategoryId);
+        preparedStatement.setInt(1, categoryId);
+        preparedStatement.executeUpdate();
     }
 
 

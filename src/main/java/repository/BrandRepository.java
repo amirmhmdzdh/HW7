@@ -63,12 +63,11 @@ public class BrandRepository {
 
     }
 
-    public Brand deleteBrand(Brand brand) throws SQLException {
+    public void deleteBrand(Brand brand) throws SQLException {
         String deleteQuery = "DELETE FROM brand WHERE id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
         preparedStatement.setInt(1, brand.getId());
         preparedStatement.executeUpdate();
-        return brand;
 
     }
 }

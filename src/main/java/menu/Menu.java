@@ -8,23 +8,22 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final UserService userService = ApplicationContex.getUserService();
-    private static final BrandService brandService = ApplicationContex.getBrandService();
-    private static final CategoryService categoryService = ApplicationContex.getCategoryService();
-    private static final ProductService productService = ApplicationContex.getProductService();
-    private static final ShareholderService shareholderService = ApplicationContex.getShareholderService();
-    private static final ShareholderBrandService shareholderBrandService = ApplicationContex.getShareholderBrandService();
+    private  final Scanner scanner = new Scanner(System.in);
+    private  final UserService userService = ApplicationContex.getUserService();
+    private  final BrandService brandService = ApplicationContex.getBrandService();
+    private  final CategoryService categoryService = ApplicationContex.getCategoryService();
+    private final ProductService productService = ApplicationContex.getProductService();
+    private final ShareholderService shareholderService = ApplicationContex.getShareholderService();
+    private final ShareholderBrandService shareholderBrandService = ApplicationContex.getShareholderBrandService();
 
     public Menu() {
     }
 
 
-
     public void publicMenu() throws SQLException {
-            boolean back = false;
+        boolean back = false;
         while (!back) {
-        System.out.println("*** welcom ***\nMENU");
+            System.out.println("*** welcom ***\nMENU");
             System.out.println("1-SIGN UP");
             System.out.println("2-Brand Menu");
             System.out.println("3-Category Menu");
@@ -49,7 +48,7 @@ public class Menu {
         }
     }
 
-    public static void brandMenu() throws SQLException {
+    public void brandMenu() throws SQLException {
         boolean back = false;
 
         while (!back) {
@@ -76,7 +75,7 @@ public class Menu {
     }
 
 
-    public static void categoryMenu() throws SQLException {
+    public void categoryMenu() throws SQLException {
         boolean back = false;
 
         while (!back) {
@@ -102,7 +101,7 @@ public class Menu {
         }
     }
 
-    public static void productMenu() throws SQLException {
+    public void productMenu() throws SQLException {
         boolean back = false;
 
         while (!back) {
@@ -128,7 +127,7 @@ public class Menu {
         }
     }
 
-    public static void shareholderMenu() throws SQLException {
+    public void shareholderMenu() throws SQLException {
         boolean back = false;
 
         while (!back) {
@@ -163,77 +162,77 @@ public class Menu {
         userService.signup();
     }
 
-    public static void signIn() throws SQLException {
+    public void signIn() throws SQLException {
         userService.signIn();
         categoryService.CreateCategory();
     }
 
-    public static void signin() throws SQLException {
+    public void signin() throws SQLException {
         userService.signIn();
         brandService.CreateBrand();
     }
 
-    public static void editbrand() throws SQLException {
+    public void editbrand() throws SQLException {
         brandService.editBrand();
 
     }
 
-    public static void editcategory() throws SQLException {
+    public void editcategory() throws SQLException {
         categoryService.editeCategory();
 
     }
 
-    public static void deletebrand() throws SQLException {
+    public void deletebrand() throws SQLException {
         brandService.deleteBrand();
     }
 
-    public static void deletecategory() throws SQLException {
+    public void deletecategory() throws SQLException {
         categoryService.deleteCategory();
     }
 
-    public static void showall() throws SQLException {
+    public void showall() throws SQLException {
         productService.findallbrand();
         productService.findallcategory();
         productService.createProduct();
     }
 
-    public static void editeProduct() throws SQLException {
+    public void editeProduct() throws SQLException {
         productService.editeProduct();
     }
 
-    public static void deleteProduct() throws SQLException {
+    public void deleteProduct() throws SQLException {
         productService.deleteProduct();
     }
 
-    public static void signUP() throws SQLException {
+    public void signUP() throws SQLException {
         shareholderService.signUp();
     }
 
-    public static void signIN() throws SQLException {
+    public void signIN() throws SQLException {
         shareholderService.signIn();
         shareholderBrandService.create();
 
     }
 
-    public static void editeShareholder() throws SQLException {
+    public void editeShareholder() throws SQLException {
         shareholderService.editeShareholder();
 
     }
 
-    public static void deleteShareholder() throws SQLException {
+    public void deleteShareholder() throws SQLException {
 
         shareholderService.deleteShareholder();
     }
 
 
-    public static void editeShareholderBrand() throws SQLException {
+    public void editeShareholderBrand() throws SQLException {
 
         shareholderBrandService.editeShareholderBrand();
     }
 
-    public static void deleteShareholderBrand() throws SQLException {
+    public void deleteShareholderBrand() throws SQLException {
 
-        shareholderBrandService.editeShareholderBrand();
+        shareholderBrandService.deleteShareholderBrand();
     }
 
 }

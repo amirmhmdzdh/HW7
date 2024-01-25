@@ -65,13 +65,26 @@ public class ShareholderBrandRepo {
         } else return null;
 
     }
-
-    public ShareholderBrand deleteShareholderBrand(ShareholderBrand shareholderBrand) throws SQLException {
+    public void deleteShareholderBrand(ShareholderBrand shareholderBrand) throws SQLException {
         String deleteQuery = "DELETE FROM shareholder_brand WHERE id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
         preparedStatement.setInt(1, shareholderBrand.getId());
         preparedStatement.executeUpdate();
-        return shareholderBrand;
+    }
+    public void deleteBrandId(int brandId) throws SQLException {
+
+        String DbrandId = "DELETE FROM shareholder_brand WHERE brand_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(DbrandId);
+        preparedStatement.setInt(1, brandId);
+        preparedStatement.executeUpdate();
+    }
+
+    public void deleteShareholderId(int shareholderId) throws SQLException {
+
+        String Dshare = "DELETE FROM shareholder_brand WHERE shareholder_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(Dshare);
+        preparedStatement.setInt(1, shareholderId);
+        preparedStatement.executeUpdate();
     }
 
 
